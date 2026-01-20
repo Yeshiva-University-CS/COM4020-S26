@@ -4,7 +4,8 @@
 Each week requires:
 - a **Running Artifact** (deployable and demonstrable), and
 - a **Scope / Design Artifact** (documentation describing what actually runs).
-- You will be graded weekly against the milestones.
+
+You will be graded weekly against the milestones.
 
 ---
 

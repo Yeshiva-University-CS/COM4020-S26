@@ -1,4 +1,4 @@
-# Project Brief: Distributed Token Vault for PHI Tokenization
+# Project Proposal: Distributed Token Vault for PHI Tokenization
 
 ## Overview
 
@@ -12,7 +12,7 @@ This project emphasizes **distributed systems fundamentals**: replication, consi
 
 ## Core Semantic Rules
 
-These rules define the required behavior of your system and drive grading.
+These rules define the required behavior of your system.
 
 1. **Owner-scoped tokens**  
    Tokens are scoped by `owner_id`. The same plaintext tokenized by different owners must produce different tokens.
@@ -63,7 +63,7 @@ A module that produces stable, opaque tokens.
 A replicated key-value store mapping tokens to original values.
 
 - Three-node deployment
-- Leader-based or quorum-based consistency (your choice)
+- Leader-based or quorum-based consistency
 - Idempotent writes
 - Duplicate token issuance prevented
 - Vault lookups always scoped by `(owner_id, epoch, token)`
@@ -130,7 +130,7 @@ You must provide **three diagrams** at specific milestones:
 3. **Final As-Built Diagram** (Week 12)  
    Documents what actually runs and matches your implementation.
 
-Diagrams must reflect **running systems**, not aspirational designs. Simple boxes-and-arrows notation is sufficient.
+Diagrams must reflect running systems, not aspirational designs. Simple boxes-and-arrows notation is sufficient.
 
 ---
 
