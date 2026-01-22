@@ -1,4 +1,4 @@
-# Distributed Video Upload and Streaming System
+# Video Upload and Streaming System
 
 ## Project Overview
 

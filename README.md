@@ -1,18 +1,20 @@
 # Project Proposals
 
-1. [Distributed Mesh VPN](1.%20Distributed%20Mesh%20VPN/)
-2. [Peer-based Node Membership Service](2.%20Peer-Based%20Node%20Membership%20Service/)
-3. [Distributed Token Vault](3.%20Distributed%20Token%20Vault/)
-4. [Video Upload & Streaming System](4.%20Video%20Upload%20&%20Streaming%20System/)
+### 1. [Distributed Mesh VPN](1.%20Distributed%20Mesh%20VPN/README.md#distributed-mesh-vpn)
+### 2. [Peer-based Node Membership Service](2.%20Peer-Based%20Node%20Membership%20Service/README.md#peer-based-node-membership-service)
+### 3. [Distributed Token Vault](3.%20Distributed%20Token%20Vault/README.md#distributed-token-vault)
+### 4. [Video Upload & Streaming System](4.%20Video%20Upload%20&%20Streaming%20System/README.md#video-upload-and-streaming-system)
 
+---
+---
 
-## Expected Project Deliverables
+# Expected Project Deliverables
 
 Each team is expected to produce running systems, clear documentation, and observable evidence of correct behavior.
 
 ---
 
-### 1. Working System
+## 1. Working System
 
 A functioning distributed system that meets the core requirements of the project.
 
@@ -27,7 +29,7 @@ The system must be runnable, demonstrable, and reproducible by the course staff.
 
 ---
 
-### 2. Design and Scope Documents
+## 2. Design and Scope Documents
 
 A set of documents that describe what the system is intended to do and what it actually does.
 
@@ -47,7 +49,7 @@ Documentation must accurately describe the running system, not an aspirational d
 
 ---
 
-### 3. Test and Demo Artifacts
+## 3. Test and Demo Artifacts
 
 Artifacts that demonstrate correctness, robustness, and observability.
 
@@ -62,7 +64,7 @@ These artifacts should make system behavior visible and explainable.
 
 ---
 
-### 4. Final Demo
+## 4. Final Demo
 
 A live demonstration of the running system.
 
