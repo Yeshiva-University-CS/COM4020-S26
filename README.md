@@ -5,6 +5,7 @@
 ### 3. [Distributed Token Vault](3.%20Distributed%20Token%20Vault/README.md#distributed-token-vault)
 ### 4. [Distributed Secrets Vault](4.%20Distribtued%20Secrets%20Vault/README.md#distributed-secrets-vault)
 ### 5. [Video Upload & Streaming System](5.%20Video%20Upload%20&%20Streaming%20System/README.md#video-upload-and-streaming-system)
+### 6. [Market-Maker Trading System](6.%20Market-Maker%20Trading%20System/README.md#market-maker-trading-system)
 
 ---
 ---
