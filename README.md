@@ -3,7 +3,8 @@
 ### 1. [Distributed Mesh VPN](1.%20Distributed%20Mesh%20VPN/README.md#distributed-mesh-vpn)
 ### 2. [Peer-based Node Membership Service](2.%20Peer-Based%20Node%20Membership%20Service/README.md#peer-based-node-membership-service)
 ### 3. [Distributed Token Vault](3.%20Distributed%20Token%20Vault/README.md#distributed-token-vault)
-### 4. [Video Upload & Streaming System](4.%20Video%20Upload%20&%20Streaming%20System/README.md#video-upload-and-streaming-system)
+### 4. [Distributed Secrets Vault](4.%20Distribtued%20Secrets%20Vault/README.md#distributed-secrets-vault)
+### 5. [Video Upload & Streaming System](5.%20Video%20Upload%20&%20Streaming%20System/README.md#video-upload-and-streaming-system)
 
 ---
 ---
