@@ -28,15 +28,15 @@ Diagrams are required where specified and must reflect implemented behavior.
 | **9** | Group Message Recovery | • Restarted node requests recent group messages<br>• Peers return retained messages<br>• Gaps visible | • Group recovery behavior and bounds<br>• **Recovery interaction diagram** |
 | **10** | Partitioned Operation | • Network partition simulated<br>• Messaging continues independently<br>• Membership diverges | • Partition assumptions<br>• **Partition topology diagram** |
 | **11** | Healing & Convergence | • Partition healed<br>• Membership converges<br>• Messaging resumes safely | • Convergence rules<br>• **Post-heal convergence diagram** |
-| **12** | Compound Failures | • Crash during partition or recovery<br>• System remains explainable | • Cross-scenario analysis<br>• **Combined failure diagram** |
-| **13** | Explainability & Inspection | • Logs and inspection explain all outcomes<br>• Causal chains visible | • Observability contract<br>• **State and log correlation diagram** |
-| **14** | Final Demo & Submission | • Live demo exercising joins, crashes, restarts, partitions, recovery<br>• Group chat and DMs exercised together | • Final design document<br>• Final scope and guarantees<br>• **Final system diagram set** |
+| **12** | Compound Failures & Explainability | • Crash during partition or recovery<br>• System remains explainable<br>• Logs show causal chains | • Cross-scenario analysis<br>• **Combined failure + observability diagram** |
+| **13** | Final Demo & Submission | • Live demo exercising joins, crashes, restarts, partitions, recovery<br>• Group chat and DMs exercised together | • Final design document<br>• Final scope and guarantees<br>• **Final system diagram set** |
 
 ---
 
 ## Notes
 
 * All three subsystems must be active throughout the project.
-* Students will migrate between subsystems as needed.
+* Students may migrate between subsystems as needed.
 * Diagrams must reflect **implemented behavior**, not intent.
-
+* Partial delivery, duplicates, and gaps are acceptable when explained.
+* Grading prioritizes correctness, recovery, and explanation over completeness.

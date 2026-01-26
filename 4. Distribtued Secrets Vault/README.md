@@ -4,7 +4,7 @@
 
 In this project, you will design and implement a distributed secrets vault that stores opaque secret values durably and serves them to authorized callers across multiple nodes.
 
-The system exposes a simple HTTP API for storing and retrieving secrets. Storing a secret is a state-creating operation whose correctness depends on durable, replicated storage. Retrieving a secret must enforce access boundaries and isolation rules derived from the caller’s authenticated identity.
+The system exposes a simple HTTP API for creating, updating, and retrieving secrets. Creating a secret establishes its existence and stores its initial value. Updating a secret creates a new version of an existing secret while preserving historical values. These operations are state-creating actions whose correctness depends on durable, replicated storage.
 
 Multiple nodes cooperate to store secret state, serve requests concurrently, and remain correct under failure and restart. The system may use centralized coordination internally, but must behave correctly as a distributed system.
 
@@ -23,12 +23,17 @@ You are not expected to implement production hardening, external secret manager 
 
 When the system is running correctly:
 
-* Clients can store secrets through a simple HTTP API
-* Clients can retrieve secrets through a simple HTTP API when permitted
+* Clients can create new secrets through a simple HTTP API
+* Attempts to create a secret that already exists return a duplicate error
+* Clients can update existing secrets through a separate API operation
+* Attempts to update a non-existent secret return *not found*
+* Each update creates a new version while preserving historical values
+* Clients can retrieve the latest value of a secret when permitted
 * Clients can view the version history of a secret, including when each value was valid
 * Clients can submit an `.env` file and:
   * replace `secret(NAME)` references with the caller’s current secret values
-  * replace `enc(NAME)` references by storing the referenced value as a secret and returning `secret(NAME)`
+  * process `enc(NAME)` references by storing the referenced value as a **new** secret and returning `secret(NAME)`
+* If any `enc(NAME)` refers to a secret that already exists, the entire request fails
 * Secrets are considered valid only after they are durably recorded
 * Secret state is replicated across vault nodes
 * Secret values are never stored in plaintext at rest
@@ -48,7 +53,8 @@ When the system is running correctly:
 You are expected to design, implement, and explain how your system handles:
 
 * Agreement on secret existence across nodes
-* Durable recording of secret writes
+* Durable recording of secret creation and updates
+* Distinguishing create and update operations under concurrency
 * Versioned updates to existing secrets
 * Tracking and serving historical secret versions
 * Defining validity intervals for secret values
@@ -56,7 +62,7 @@ You are expected to design, implement, and explain how your system handles:
 * Correct handling of retries
 * Isolation between different callers or tenants
 * Coordinated creation and retrieval of multiple secrets in a single operation
-* Deterministic failure when referenced secrets cannot be resolved
+* Deterministic failure when duplicate or missing secrets are encountered
 * Deterministic transformation of `.env` files
 * Node crashes during read or write operations
 * Restart and recovery without manual intervention

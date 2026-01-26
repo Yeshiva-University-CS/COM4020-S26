@@ -15,19 +15,18 @@ You will be graded weekly against these milestones.
 | Week | Focus | Running Artifact | Scope / Design Artifact |
 |------|------|------------------|-------------------------|
 | **1** | Project Bootstrap & Scope Definition | • Secrets service starts and responds to `/health`<br>• Single-node deployment reproducible | • Initial scope document (1–2 pages)<br>• Explicit assumptions and non-goals |
-| **2** | Architecture & API Contract | • `/store` and `/retrieve` endpoints callable (stubbed allowed)<br>• Authentication enforced | • API contract frozen<br>• Initial architecture diagram |
-| **3** | Secret Identity & Lookup Semantics | • Secrets can be stored with a stable identifier<br>• Same identifier resolves consistently across restarts | • Secret identity and lookup assumptions |
-| **4** | Single-Node Vault Semantics | • Secret writes persisted durably<br>• Versioned updates supported | • Single-node correctness guarantees |
-| **5** | Encryption-at-Rest Record Format | • Secret values are stored encrypted at rest<br>• Stored records include wrapped data keys and required metadata | • Encryption and storage record definition |
-| **6** | Idempotency & Retry Semantics | • Safe retries demonstrated for store and retrieve | • Idempotency rules and limitations |
-| **7** | Multi-Node Architecture & Replication Path | • Replication between two vault nodes exercised<br>• Stored secrets become visible on peers | • Replication model and failure assumptions |
+| **2** | Architecture & API Contract | • Create, update, and retrieve endpoints callable (stubbed allowed)<br>• Authentication enforced | • API contract frozen<br>• Initial architecture diagram |
+| **3** | Secret Existence & Duplicate Semantics | • Secret creation succeeds only once<br>• Duplicate create requests fail | • Secret existence and duplicate handling rules |
+| **4** | Single-Node Update & Versioning | • Updates create new versions<br>• History preserved with validity intervals | • Versioning and validity guarantees |
+| **5** | Encryption-at-Rest Record Format | • Secret values are stored encrypted at rest<br>• Stored records include wrapped data keys and metadata | • Encryption and storage record definition |
+| **6** | Idempotency & Retry Semantics | • Safe retries demonstrated for create and update | • Idempotency rules and limitations |
+| **7** | Multi-Node Architecture & Replication Path | • Replication between two vault nodes exercised<br>• Created and updated secrets appear on peers | • Replication model and failure assumptions |
 | **8** | Multi-Node Consistency | • Consistent behavior with all nodes healthy<br>• Reads resolve using authoritative replicated state | • Updated scope reflecting implemented behavior |
 | **9** | Failure Handling | • One vault node killed during operation<br>• System remains usable | • Failure behavior and degraded modes |
-| **10** | Concurrency, History, and Isolation Safety | • Concurrent store and update tested<br>• Historical secret values retained correctly<br>• Validity timestamps assigned correctly | • Concurrency, history, and isolation guarantees |
-| **11** | Multi-Secret Resolution | • `.env` encryption and expansion creates and resolves secrets correctly<br>• All-or-nothing failure demonstrated | • `.env` transformation and secret creation semantics |
-| **12** | History Retrieval | • Secret history endpoint returns ordered versions with validity ranges | • History query semantics and authorization rules |
-| **13** | Observability Under Change | • Logs show store, retrieve, history access, transformation, failure, and recovery | • Observed behavior with supporting logs |
-| **14** | Final Demo & Submission | • Live multi-node demo showing concurrency, failure, recovery, history access, and `.env` encryption/expansion | • Final scope document<br>• Clear statement of guarantees and limitations |
+| **10** | Concurrency, History, and Isolation Safety | • Concurrent create/update tested<br>• Duplicate and update rules enforced correctly | • Concurrency and isolation guarantees |
+| **11** | Multi-Secret `.env` Creation & Resolution | • `.env encrypt` creates secrets correctly<br>• `.env expand` resolves secrets correctly<br>• Duplicate secrets cause full failure | • `.env` transformation and failure semantics |
+| **12** | History Retrieval & Observability | • Secret history endpoint returns ordered versions with validity ranges<br>• Logs show create, update, retrieve, and failure | • History query semantics and observability notes |
+| **13** | Final Demo & Submission | • Live multi-node demo showing create/update, concurrency, failure, recovery, history access, and `.env` workflows | • Final scope document<br>• Clear statement of guarantees and limitations |
 
 ---
 

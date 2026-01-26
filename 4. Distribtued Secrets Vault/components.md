@@ -8,20 +8,23 @@ You will build a distributed secrets vault system. It includes running services 
 
 ### 1. Secrets API Service
 
-A long-running HTTP service that accepts requests for storing and retrieving secrets.
+A long-running HTTP service that accepts requests for creating, updating, and retrieving secrets.
 
 It will:
 
 * Accept structured JSON input
 * Authenticate requests and derive the caller’s identity
-* Accept secret storage requests and submit proposed writes to the vault
+* Accept secret **create** requests that establish a new secret
+* Reject create requests for secrets that already exist
+* Accept secret **update** requests that create a new version of an existing secret
+* Reject update requests for secrets that do not exist
 * Accept secret retrieval requests for previously stored secrets
 * Accept requests to retrieve the version history of a secret
 * Accept `.env` file content and:
   * expand `secret(NAME)` references by retrieving authoritative secret values
-  * process `enc(NAME)` references by storing the referenced value as a secret and returning `secret(NAME)`
-* Enforce caller-scoped isolation on reads
-* Fail deterministically if any referenced secret cannot be resolved
+  * process `enc(NAME)` references by creating new secrets and returning `secret(NAME)`
+* Fail the entire `.env` request if any referenced secret already exists or cannot be resolved
+* Enforce caller-scoped isolation on reads and writes
 * Expose basic health and status endpoints
 
 The API validates and forwards requests but does not determine secret existence or authoritative state.
@@ -34,7 +37,9 @@ A long-running service responsible for authoritative storage of secret state.
 
 It will:
 
-* Validate and persist proposed secret writes
+* Validate and persist proposed secret creations
+* Validate and persist secret updates as new versions
+* Maintain a clear distinction between secret existence and secret updates
 * Persist multiple versions of a secret’s value
 * Record validity intervals for each secret version
 * Replicate secret state to peer vault instances
@@ -59,13 +64,14 @@ It defines:
 
 * How callers are identified and scoped
 * What it means for a secret to exist
+* The distinction between secret creation and secret update
 * How secret updates are versioned
 * How historical secret values are retained
 * How validity intervals are assigned to secret versions
 * What identifiers are used to reference secrets
 * How isolation is enforced during retrieval and history access
 * How retries and concurrent requests are handled
-* What *not found* means under isolation
+* What duplicate and *not found* errors mean under isolation
 
 The model must be documented and observable in practice.
 
@@ -96,11 +102,12 @@ A small, explicit interface describing how clients interact with the system.
 It will:
 
 * Define request and response formats
-* Specify error and *not found* behavior
+* Clearly distinguish secret creation from secret update
+* Specify duplicate and *not found* error behavior
 * Describe durability, replication, and isolation guarantees
 * Describe encrypted-at-rest behavior and failure behavior when referenced secrets cannot be resolved
 * Describe secret history retrieval semantics, including version ordering and validity timestamps
-* Describe `.env` encryption and expansion semantics, including secret creation behavior and all-or-nothing failure
+* Describe `.env` encryption and expansion semantics, including secret creation and all-or-nothing failure
 * Hide internal replication and coordination mechanics
 
 The contract exists to decouple system behavior from implementation details.
